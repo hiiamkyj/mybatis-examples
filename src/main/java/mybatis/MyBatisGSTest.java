@@ -3,9 +3,14 @@ package mybatis;
 import java.io.IOException;
 import java.io.InputStream;
 
+import javax.sql.DataSource;
+
 import org.apache.ibatis.io.Resources;
+import org.apache.ibatis.session.Configuration;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
+import org.apache.ibatis.transaction.TransactionFactory;
+import org.apache.ibatis.transaction.jdbc.JdbcTransactionFactory;
 
 public class MyBatisGSTest {
 
