@@ -10,9 +10,14 @@ import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 public class MyBatisGSTest {
 
 	public static void main(String[] args) throws IOException {
-		String resource = "org/mybatis/example/mybatis-config.xml";
-		InputStream inputStream = Resources.getResourceAsStream(resource);
-		SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(inputStream);
+		DataSource dataSource = BlogDataSourceFactory.getBlogDataSource();
+		TransactionFactory transactionFactory = new JdbcTransactionFactory();
+		Environment environment = new Environment("development",
+				transactionFactory, dataSource);
+		Configuration configuration = new Configuration(environment);
+		configuration.addMapper(BlogMapper.class);
+		SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder()
+				.build(configuration);
 	}
 
 }
